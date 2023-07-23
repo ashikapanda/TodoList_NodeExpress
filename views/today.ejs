@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs") %>
+  <div class="box" id="heading">
+    <h1>
+  
+      <%= new Date().toLocaleDateString('UTC', {weekday: 'long', month: 'long', day:
+      'numeric'}) %>
+    </h1>
+</div>
+<div class="box">
+  <% if(locals.items && locals.items.length !== 0 && (new Date().toLocaleDateString().split(',')[0] === locals.list )) { %>
+  <% for(let i=0;i<items.length;i++){ %>
+   <% console.log("items[i]", items[i]) %>
+    <div class="item">
+     <input type ="checkbox" />
+     <p><%= items[i] %></p>
+    </div>
+
+ <%   } %>
+  <% } else { %>
+    <div></div>
+    <% } %> 
+  <form action="/" class="item" method="POST">
+    <input type="text" placeholder="New Item" name="newItem"/>
+    <button type="submit" name="list" value = <%= new Date().toLocaleDateString().split(',')[0] %>>+</button>
+
+  </form>
+</div>
+<%- include("partials/footer.ejs") %>
